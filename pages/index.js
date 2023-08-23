@@ -17,10 +17,25 @@ const DUMMY_MEETUPS = [
   }
 ];
 
-export function HomePage() {
+export function HomePage(props) {
+  // * Another way to solve problem (instead of getStaticProps [method name is IMPORTANT, NOT CHANGE IT]
+  // const [loadedMeetups, setLoadedMeetups] = useState([]);
+  //
+  // useEffect(() => {
+  //   setLoadedMeetups(DUMMY_MEETUPS);
+  // }, []);
+
   return (
-    <MeetupList meetups={DUMMY_MEETUPS} />
+    <MeetupList meetups={props.meetups} />
   );
+}
+
+export async function getStaticProps() {
+  return {
+    props: {
+      meetups: DUMMY_MEETUPS,
+    },
+  };
 }
 
 export default HomePage;
